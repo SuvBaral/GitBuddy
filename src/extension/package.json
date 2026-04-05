@@ -1,0 +1,129 @@
+{
+  "name": "git-simple",
+  "displayName": "Git Simple — Team Explorer for VS Code + AI Git Commands",
+  "description": "Visual Studio Team Explorer-style Git panel with natural language commands. Type 'switch to main' instead of remembering git commands. Built with Blazor WASM.",
+  "version": "1.0.0",
+  "publisher": "shubham",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YourUsername/GitSimple"
+  },
+  "homepage": "https://github.com/YourUsername/GitSimple",
+  "bugs": {
+    "url": "https://github.com/YourUsername/GitSimple/issues"
+  },
+  "engines": {
+    "vscode": "^1.110.0"
+  },
+  "categories": [
+    "SCM Providers",
+    "Other"
+  ],
+  "keywords": [
+    "git",
+    "branches",
+    "team explorer",
+    "source control",
+    "natural language",
+    "ai",
+    "simple git",
+    "blazor"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "workspaceContains:.git"
+  ],
+  "main": "./out/extension.js",
+  "icon": "images/icon.png",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "gitSimple",
+          "title": "Git Simple",
+          "icon": "$(git-branch)"
+        }
+      ]
+    },
+    "views": {
+      "gitSimple": [
+        {
+          "type": "webview",
+          "id": "gitSimple.mainView",
+          "name": "Git Simple"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "gitSimple.refresh",
+        "title": "Refresh",
+        "icon": "$(refresh)",
+        "category": "Git Simple"
+      },
+      {
+        "command": "gitSimple.nlCommand",
+        "title": "Git Command (Natural Language)",
+        "icon": "$(comment)",
+        "category": "Git Simple"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "gitSimple.nlCommand",
+        "key": "ctrl+shift+g ctrl+shift+n",
+        "when": "workspaceFolderCount > 0"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "gitSimple.refresh",
+          "when": "view == gitSimple.mainView",
+          "group": "navigation"
+        },
+        {
+          "command": "gitSimple.nlCommand",
+          "when": "view == gitSimple.mainView",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Git Simple",
+      "properties": {
+        "gitSimple.nlProvider": {
+          "type": "string",
+          "default": "auto",
+          "enum": [
+            "auto",
+            "copilot",
+            "anthropic",
+            "offline"
+          ],
+          "description": "AI provider for natural language commands. 'auto' uses Copilot if available, falls back to offline."
+        },
+        "gitSimple.confirmModerate": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show confirmation for moderate-risk operations (merge, rebase, checkout)"
+        },
+        "gitSimple.autoBackupOnDangerous": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically stash changes before dangerous operations"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "powershell -ExecutionPolicy Bypass -File ../../build.ps1 && npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.37",
+    "@types/vscode": "^1.110.0",
+    "typescript": "^5.9.3"
+  }
+}

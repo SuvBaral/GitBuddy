@@ -1,0 +1,68 @@
+@inject GitService Git
+@inject StateService State
+
+<div class="actions-bar">
+    <ActionButton Label="Fetch" Tooltip="Fetch all remotes" IsLoading="_fetchLoading" OnClick="DoFetch" />
+    <ActionButton Label="Pull" Tooltip="Pull from remote" IsLoading="_pullLoading" OnClick="DoPull" />
+    <ActionButton Label="Push" Tooltip="Push to remote" IsLoading="_pushLoading" OnClick="DoPush" />
+    <ActionButton Label="Sync" Tooltip="Pull then Push" IsLoading="_syncLoading" OnClick="DoSync" />
+    <ActionButton Label="Stash" Tooltip="Stash changes" IsLoading="_stashLoading" OnClick="DoStash" />
+</div>
+
+@code {
+    private bool _fetchLoading, _pullLoading, _pushLoading, _syncLoading, _stashLoading;
+
+    [Parameter] public EventCallback<string> OnToast { get; set; }
+    [Parameter] public EventCallback<string> OnError { get; set; }
+    [Parameter] public EventCallback OnRefresh { get; set; }
+
+    private async Task DoFetch()
+    {
+        _fetchLoading = true;
+        var r = await Git.Fetch();
+        _fetchLoading = false;
+        if (r?.Success == true) await OnToast.InvokeAsync("Fetch complete");
+        else await OnError.InvokeAsync(r?.Error ?? "Fetch failed");
+        await OnRefresh.InvokeAsync();
+    }
+
+    private async Task DoPull()
+    {
+        _pullLoading = true;
+        var r = await Git.Pull();
+        _pullLoading = false;
+        if (r?.Success == true) await OnToast.InvokeAsync("Pull complete");
+        else await OnError.InvokeAsync(r?.Error ?? "Pull failed");
+        await OnRefresh.InvokeAsync();
+    }
+
+    private async Task DoPush()
+    {
+        _pushLoading = true;
+        var r = await Git.Push();
+        _pushLoading = false;
+        if (r?.Success == true) await OnToast.InvokeAsync("Push complete");
+        else await OnError.InvokeAsync(r?.Error ?? "Push failed");
+        await OnRefresh.InvokeAsync();
+    }
+
+    private async Task DoSync()
+    {
+        _syncLoading = true;
+        var r = await Git.Sync();
+        _syncLoading = false;
+        if (r?.Success == true) await OnToast.InvokeAsync("Sync complete");
+        else await OnError.InvokeAsync(r?.Error ?? "Sync failed");
+        await OnRefresh.InvokeAsync();
+    }
+
+    private async Task DoStash()
+    {
+        _stashLoading = true;
+        var r = await Git.StashSave("Quick stash");
+        _stashLoading = false;
+        if (r?.Success == true) await OnToast.InvokeAsync("Changes stashed");
+        else await OnError.InvokeAsync(r?.Error ?? "Stash failed");
+        await OnRefresh.InvokeAsync();
+    }
+}

@@ -1,0 +1,35 @@
+@if (_visible)
+{
+    <div class="toast @(_isError ? "toast-error" : "toast-success")">
+        @Message
+    </div>
+}
+
+@code {
+    private bool _visible;
+    private bool _isError;
+    private System.Timers.Timer? _timer;
+
+    [Parameter] public string Message { get; set; } = string.Empty;
+
+    public void Show(string message, bool isError = false)
+    {
+        Message = message;
+        _isError = isError;
+        _visible = true;
+
+        _timer?.Stop();
+        _timer?.Dispose();
+        _timer = new System.Timers.Timer(3000);
+        _timer.Elapsed += (_, _) =>
+        {
+            _visible = false;
+            _timer?.Dispose();
+            InvokeAsync(StateHasChanged);
+        };
+        _timer.AutoReset = false;
+        _timer.Start();
+
+        StateHasChanged();
+    }
+}

@@ -1,0 +1,55 @@
+name: Build & Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Publish Blazor WASM
+        run: dotnet publish src/GitSimple.UI/GitSimple.UI.csproj -c Release -o ./publish
+
+      - name: Copy Blazor to extension
+        run: |
+          rm -rf src/extension/blazor-app
+          cp -r publish/wwwroot src/extension/blazor-app
+
+      - name: Install npm dependencies
+        working-directory: src/extension
+        run: npm install
+
+      - name: Compile TypeScript
+        working-directory: src/extension
+        run: npm run compile
+
+      - name: Package VSIX
+        working-directory: src/extension
+        run: npx @vscode/vsce package --no-dependencies
+
+      - name: Upload VSIX artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: git-simple-vsix
+          path: src/extension/*.vsix
+
+      - name: Publish to VS Code Marketplace
+        if: startsWith(github.ref, 'refs/tags/v')
+        working-directory: src/extension
+        run: npx @vscode/vsce publish --no-dependencies
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}

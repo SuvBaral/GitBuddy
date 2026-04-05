@@ -1,0 +1,11 @@
+<div class="context-menu-item @(IsDangerous ? "dangerous" : "")" @onclick="HandleClick">
+    @Label
+</div>
+
+@code {
+    [Parameter, EditorRequired] public string Label { get; set; } = string.Empty;
+    [Parameter] public bool IsDangerous { get; set; }
+    [Parameter] public EventCallback OnClick { get; set; }
+
+    private async Task HandleClick() => await OnClick.InvokeAsync();
+}

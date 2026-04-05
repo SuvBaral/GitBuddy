@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/suvba/.gemini/antigravity/brain/b9b55336-6fe3-4af1-8be6-c62ed30d037b/**)",
+      "Bash(find \"/d/Project/Git Extensions/GitSimple/src\" -name \"*.csproj\" -exec ls -la {} \\\\;)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(dotnet sdk:*)",
+      "Bash(dotnet build:*)",
+      "Bash(dotnet test:*)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\suvba\\.claude\\projects\\d--Project-Git-Extensions-GitSimple"
+    ]
+  }
+}

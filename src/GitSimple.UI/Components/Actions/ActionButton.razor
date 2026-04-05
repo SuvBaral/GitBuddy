@@ -1,0 +1,22 @@
+<button class="action-btn @(IsLoading ? "loading" : "")" @onclick="HandleClick" disabled="@IsLoading" title="@Tooltip">
+    @if (IsLoading)
+    {
+        <LoadingSpinner Visible="true" />
+    }
+    else
+    {
+        @Label
+    }
+</button>
+
+@code {
+    [Parameter, EditorRequired] public string Label { get; set; } = string.Empty;
+    [Parameter] public string Tooltip { get; set; } = string.Empty;
+    [Parameter] public bool IsLoading { get; set; }
+    [Parameter] public EventCallback OnClick { get; set; }
+
+    private async Task HandleClick()
+    {
+        if (!IsLoading) await OnClick.InvokeAsync();
+    }
+}

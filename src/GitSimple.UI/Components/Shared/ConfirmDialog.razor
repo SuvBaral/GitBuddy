@@ -1,0 +1,34 @@
+@if (Visible)
+{
+    <div class="confirm-overlay" @onclick="Cancel">
+        <div class="confirm-dialog" @onclick:stopPropagation="true">
+            <div class="confirm-title">@Title</div>
+            <div class="confirm-body">@Message</div>
+            @if (!string.IsNullOrEmpty(Warning))
+            {
+                <div class="confirm-body" style="color: var(--vscode-editorWarning-foreground); font-weight: 600;">
+                    &#9888; @Warning
+                </div>
+            }
+            <div class="confirm-actions">
+                <button class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+                <button class="btn @(IsDangerous ? "btn-danger" : "btn-primary")" @onclick="Confirm">
+                    @(IsDangerous ? "Yes, I'm sure" : "Confirm")
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public bool Visible { get; set; }
+    [Parameter] public string Title { get; set; } = "Confirm";
+    [Parameter] public string Message { get; set; } = string.Empty;
+    [Parameter] public string? Warning { get; set; }
+    [Parameter] public bool IsDangerous { get; set; }
+    [Parameter] public EventCallback OnConfirmed { get; set; }
+    [Parameter] public EventCallback OnCancelled { get; set; }
+
+    private async Task Confirm() => await OnConfirmed.InvokeAsync();
+    private async Task Cancel() => await OnCancelled.InvokeAsync();
+}

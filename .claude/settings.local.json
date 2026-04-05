@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet new:*)",
+      "Bash(dotnet sln:*)",
+      "Bash(code --install-extension \"d:/Project/Git Extensions/GitSimple/src/extension/git-simple-1.0.0.vsix\" --force)"
+    ]
+  }
+}

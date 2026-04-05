@@ -1,0 +1,17 @@
+@implements IDisposable
+
+<div class="context-menu-overlay" @onclick="Close" @oncontextmenu="Close" @oncontextmenu:preventDefault="true"></div>
+<div class="context-menu" style="left: @(X)px; top: @(Y)px;">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public double X { get; set; }
+    [Parameter] public double Y { get; set; }
+    [Parameter] public EventCallback OnClose { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    private async Task Close() => await OnClose.InvokeAsync();
+
+    public void Dispose() { }
+}

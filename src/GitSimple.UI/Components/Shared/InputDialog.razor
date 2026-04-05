@@ -1,0 +1,48 @@
+@if (Visible)
+{
+    <div class="confirm-overlay" @onclick="Cancel">
+        <div class="confirm-dialog" @onclick:stopPropagation="true">
+            <div class="confirm-title">@Title</div>
+            <input class="nl-input" style="margin: 8px 0;"
+                   @bind="_inputValue"
+                   @bind:event="oninput"
+                   placeholder="@Placeholder"
+                   @onkeydown="HandleKey" />
+            <div class="confirm-actions">
+                <button class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+                <button class="btn btn-primary" @onclick="Submit" disabled="@string.IsNullOrWhiteSpace(_inputValue)">OK</button>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private string _inputValue = string.Empty;
+
+    [Parameter] public bool Visible { get; set; }
+    [Parameter] public string Title { get; set; } = string.Empty;
+    [Parameter] public string Placeholder { get; set; } = string.Empty;
+    [Parameter] public EventCallback<string> OnSubmitted { get; set; }
+    [Parameter] public EventCallback OnCancelled { get; set; }
+
+    private async Task Submit()
+    {
+        if (!string.IsNullOrWhiteSpace(_inputValue))
+        {
+            await OnSubmitted.InvokeAsync(_inputValue.Trim());
+            _inputValue = string.Empty;
+        }
+    }
+
+    private async Task Cancel()
+    {
+        _inputValue = string.Empty;
+        await OnCancelled.InvokeAsync();
+    }
+
+    private async Task HandleKey(Microsoft.AspNetCore.Components.Web.KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter") await Submit();
+        else if (e.Key == "Escape") await Cancel();
+    }
+}
