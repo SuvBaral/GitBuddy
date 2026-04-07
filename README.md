@@ -2,6 +2,8 @@
 
 > A Visual Studio Team Explorer-style Git panel for VS Code — do everything with natural language or one click, no git commands required.
 
+[![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/ShubhamBaral.git-buddy?label=Marketplace&logo=visualstudiocode)](https://marketplace.visualstudio.com/items?itemName=ShubhamBaral.git-buddy)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/ShubhamBaral.git-buddy)](https://marketplace.visualstudio.com/items?itemName=ShubhamBaral.git-buddy)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.107%2B-blue)
 ![.NET](https://img.shields.io/badge/.NET-9.0-purple)
@@ -78,7 +80,11 @@ Fetch, Pull, Push, Sync, and Stash are always one click away at the top.
 
 ### From VS Code Marketplace
 
-> Not yet published. Follow the repository for updates.
+1. Open VS Code → `Extensions (Ctrl+Shift+X)`
+2. Search for **Git Buddy**
+3. Click **Install**
+
+Or install directly: [marketplace.visualstudio.com/items?itemName=ShubhamBaral.git-buddy](https://marketplace.visualstudio.com/items?itemName=ShubhamBaral.git-buddy)
 
 ---
 
