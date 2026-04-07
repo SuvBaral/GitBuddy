@@ -20,6 +20,9 @@ publish/
 .vscode/launch.json
 *.user
 
+# Claude Code
+.claude/
+
 # OS
 .DS_Store
 Thumbs.db
