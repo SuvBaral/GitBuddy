@@ -2,7 +2,7 @@
   "name": "git-buddy",
   "displayName": "Git Buddy",
   "description": "Your friendly Git companion for VS Code. Team Explorer-style panel with natural language commands — type 'switch to main' or 'merge develop' instead of memorizing git syntax. Full staging, history, conflict resolution, and AI commit messages built in.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "ShubhamBaral",
   "license": "MIT",
   "author": {
