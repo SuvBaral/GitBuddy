@@ -1,4 +1,4 @@
-# Changelog
+﻿# Changelog
 
 All notable changes to this project will be documented in this file.
 
@@ -31,5 +31,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Git installed and available on `PATH`
 - GitHub Copilot (optional — for AI commit messages and NL fallback)
 
-[Unreleased]: https://github.com/YOUR-USERNAME/GitBuddy/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/YOUR-USERNAME/GitBuddy/releases/tag/v1.0.0
+[Unreleased]: https://github.com/SuvBaral/GitBuddy/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/SuvBaral/GitBuddy/releases/tag/v1.0.0

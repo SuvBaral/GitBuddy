@@ -72,7 +72,7 @@ Fetch, Pull, Push, Sync, and Stash are always one click away at the top.
 
 ### From VSIX (current release)
 
-1. Download `git-buddy-1.0.0.vsix` from the [Releases](https://github.com/YOUR-USERNAME/GitBuddy/releases) page
+1. Download `git-buddy-1.0.0.vsix` from the [Releases](https://github.com/SuvBaral/GitBuddy/releases) page
 2. In VS Code: `Extensions (Ctrl+Shift+X)` → `···` menu → `Install from VSIX…`
 3. Select the downloaded file
 
@@ -128,7 +128,7 @@ Open `Ctrl+,` and search for **Git Buddy**:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/YOUR-USERNAME/GitBuddy.git
+git clone https://github.com/SuvBaral/GitBuddy.git
 cd GitBuddy
 
 # 2. Install Node dependencies

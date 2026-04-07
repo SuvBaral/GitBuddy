@@ -1,20 +1,20 @@
-{
+﻿{
   "name": "git-buddy",
   "displayName": "Git Buddy",
   "description": "Your friendly Git companion for VS Code. Team Explorer-style panel with natural language commands — type 'switch to main' or 'merge develop' instead of memorizing git syntax. Full staging, history, conflict resolution, and AI commit messages built in.",
   "version": "1.0.0",
-  "publisher": "YOUR-PUBLISHER-ID",
+  "publisher": "ShubhamBaral",
   "license": "MIT",
   "author": {
     "name": "Shubham"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/YOUR-USERNAME/GitBuddy"
+    "url": "https://github.com/SuvBaral/GitBuddy"
   },
-  "homepage": "https://github.com/YOUR-USERNAME/GitBuddy#readme",
+  "homepage": "https://github.com/SuvBaral/GitBuddy#readme",
   "bugs": {
-    "url": "https://github.com/YOUR-USERNAME/GitBuddy/issues"
+    "url": "https://github.com/SuvBaral/GitBuddy/issues"
   },
   "engines": {
     "vscode": "^1.107.0"

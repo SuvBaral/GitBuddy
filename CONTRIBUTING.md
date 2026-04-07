@@ -32,7 +32,7 @@ Thank you for your interest in contributing! This document covers how to set up 
 ### First-time setup
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/GitBuddy.git
+git clone https://github.com/SuvBaral/GitBuddy.git
 cd GitBuddy
 
 # Install Node.js dependencies
