@@ -28,7 +28,7 @@ jobs:
         run: npm ci
 
       - name: Run .NET tests
-        run: dotnet test tests/GitSimple.UI.Tests/ --configuration Release --logger "console;verbosity=normal"
+        run: dotnet test tests/GitBuddy.UI.Tests/ --configuration Release --logger "console;verbosity=normal"
 
       - name: Build Blazor UI + copy assets
         run: powershell -ExecutionPolicy Bypass -File build.ps1
@@ -44,7 +44,7 @@ jobs:
       - name: Upload VSIX artifact
         uses: actions/upload-artifact@v4
         with:
-          name: git-simple-vsix
+          name: git-buddy-vsix
           path: src/extension/*.vsix
           retention-days: 90
 
